@@ -50,7 +50,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="bg-black/50 flex justify-between items-center py-4 px-6 ">
+    <nav className="bg-black/50 shadow-lg flex justify-between items-center py-4 px-6 ">
       <div className="flex justify-center items-center">
         <IoMenu
           onClick={() => setShowMenu(true)}
@@ -65,7 +65,7 @@ const Navbar = () => {
       </div>
       {/* mobile responsive menu  */}
       <div
-        className={`sm:hidden flex flex-col gap-6 bg-green-600 h-screen text-white  fixed left-0 top-0 p-10 transition-all  ${
+        className={`sm:hidden flex flex-col gap-6 bg-green-600 h-screen text-white  fixed left-0 top-0 p-10 transition-all z-50  ${
           showMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
