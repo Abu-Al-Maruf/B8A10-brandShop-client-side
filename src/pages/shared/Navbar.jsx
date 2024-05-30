@@ -11,7 +11,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-black/60" : ""
+            isPending ? "pending" : isActive ? "text-blue-700" : ""
           }
         >
           Home
@@ -21,7 +21,7 @@ const Navbar = () => {
         <NavLink
           to="/addProduct"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-black/60" : ""
+            isPending ? "pending" : isActive ? "text-blue-700" : ""
           }
         >
           Add Product
@@ -31,7 +31,7 @@ const Navbar = () => {
         <NavLink
           to="/myCart"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-black/60" : ""
+            isPending ? "pending" : isActive ? "text-blue-700" : ""
           }
         >
           My Cart
@@ -41,7 +41,7 @@ const Navbar = () => {
         <NavLink
           to="/login"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-black/60" : ""
+            isPending ? "pending" : isActive ? "text-blue-700" : ""
           }
         >
           Login
@@ -50,14 +50,14 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="bg-black/50 shadow-lg flex justify-between items-center py-4 px-6 ">
+    <nav className="bg-gray-100 text-black shadow-lg flex justify-between items-center py-4 px-6 ">
       <div className="flex justify-center items-center">
         <IoMenu
           onClick={() => setShowMenu(true)}
           className="text-5xl cursor-pointer sm:hidden"
         />
         <Link
-          className=" text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-200 pl-4"
+          className=" text-xl sm:text-2xl lg:text-3xl font-semibold  pl-4"
           to={"/"}
         >
           Brand Shop
@@ -65,7 +65,7 @@ const Navbar = () => {
       </div>
       {/* mobile responsive menu  */}
       <div
-        className={`sm:hidden flex flex-col gap-6 bg-green-600 h-screen text-white  fixed left-0 top-0 p-10 transition-all z-50  ${
+        className={`sm:hidden flex flex-col gap-6 bg-green-600 h-screen  fixed left-0 top-0 p-10 transition-all z-50  ${
           showMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -77,7 +77,7 @@ const Navbar = () => {
       </div>
       {/* mobile responsive menu  end */}
       <div className="flex items-center justify-between gap-20 ">
-        <ul className="sm:flex gap-5 text-lg text-gray-100 font-medium hidden">
+        <ul className="sm:flex gap-5 text-lg  font-medium hidden">
           {navLinks}
         </ul>
         <div>
