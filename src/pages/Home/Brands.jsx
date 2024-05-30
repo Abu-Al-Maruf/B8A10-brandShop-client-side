@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const Brands = ({ brands }) => {
   return (
     <section className="bg-gray-100 py-8">
@@ -12,13 +13,14 @@ const Brands = ({ brands }) => {
 
         <div className="grid grid-cols-2  sm:grid-cols-3  gap-y-6 gap-x-10 mb-8">
           {brands.map((brand) => (
-            <div
+            <Link 
+            to={`/brandProducts/${brand.id}`}
               key={brand.id}
               className="p-4 sm:p-6 md:p-10 bg-white rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
             >
               <img src={brand.image} className="h-16 mx-auto mb-2" />
               <h2 className="text-lg font-semibold">{brand.name}</h2>
-            </div>
+            </Link>
           ))}
         </div>
 

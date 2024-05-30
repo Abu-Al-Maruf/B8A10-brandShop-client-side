@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,8 +12,27 @@ const AddProduct = () => {
     const rating = form.rating.value;
     const image = form.image.value;
     const user = { name, brand, type, price, desc, rating, image };
-
     console.log(user);
+    form.reset()
+
+    fetch("http://localhost:5000/brandProducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "Product added successfully",
+            icon: "success",
+          });
+        }
+      });
   };
 
   return (
@@ -31,6 +52,7 @@ const AddProduct = () => {
             type="text"
             id="name"
             placeholder="Enter name"
+            required
           />
         </div>
 
@@ -43,6 +65,7 @@ const AddProduct = () => {
             type="text"
             id="brand"
             placeholder="Enter brand name"
+            required
           />
         </div>
 
@@ -55,6 +78,7 @@ const AddProduct = () => {
             type="text"
             id="type"
             placeholder="Enter type"
+            required
           />
         </div>
         <div className="flex flex-col justify-center items-start gap-1">
@@ -66,6 +90,7 @@ const AddProduct = () => {
             type="text"
             id="price"
             placeholder="Enter price"
+            required
           />
         </div>
         <div className="flex flex-col justify-center items-start gap-1">
@@ -77,6 +102,7 @@ const AddProduct = () => {
             type="text"
             id="desc"
             placeholder="Enter short description"
+            required
           />
         </div>
         <div className="flex flex-col justify-center items-start gap-1">
@@ -88,6 +114,7 @@ const AddProduct = () => {
             type="text"
             id="rating"
             placeholder="Enter rating"
+            required
           />
         </div>
         <div className="flex flex-col justify-center items-start gap-1 col-span-2">
@@ -99,6 +126,7 @@ const AddProduct = () => {
             type="text"
             id="image"
             placeholder="Enter image link"
+            required
           />
         </div>
         <div className="col-span-2 mx-auto">
