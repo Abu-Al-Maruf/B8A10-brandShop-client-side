@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "Apple",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+    },
+    {
+      "id": 2,
+      "name": "Samsung",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+    },
+    {
+      "id": 3,
+      "name": "Sony",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Sony_logo.svg"
+    },
+    {
+      "id": 4,
+      "name": "Google",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+    },
+    {
+      "id": 5,
+      "name": "Intel",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY10KWvt29PS7f6vybwxQiZaFaAlDIu0qIow&s"
+    },
+    {
+      "id": 6,
+      "name": "Microsoft",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg"
+    }
+  ]
+  
