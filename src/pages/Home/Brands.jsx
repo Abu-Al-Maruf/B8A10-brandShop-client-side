@@ -7,14 +7,12 @@ const Brands = ({ brands }) => {
         <h1 className="text-2xl md:text-4xl font-bold mb-4">
           Welcome to Our Brand Shop
         </h1>
-        <p className="text-lg  mb-8">
-          Discover best product
-        </p>
+        <p className="text-lg  mb-8">Buy our best products</p>
 
         <div className="grid grid-cols-2  sm:grid-cols-3  gap-y-6 gap-x-10 mb-8">
           {brands.map((brand) => (
-            <Link 
-            to={`/brandProducts/${brand.id}`}
+            <Link
+              to={`/brandProducts/${brand.name}`}
               key={brand.id}
               className="p-4 sm:p-6 md:p-10 bg-white rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
             >
@@ -23,8 +21,6 @@ const Brands = ({ brands }) => {
             </Link>
           ))}
         </div>
-
-        
       </div>
     </section>
   );

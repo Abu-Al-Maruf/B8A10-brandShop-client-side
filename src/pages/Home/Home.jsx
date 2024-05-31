@@ -5,7 +5,6 @@ import Footer from "../shared/Footer";
 
 const Home = () => {
   const brands = useLoaderData();
-  console.log(brands);
   return (
     <div>
       <Banner></Banner>

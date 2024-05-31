@@ -57,7 +57,7 @@ const Navbar = () => {
           className="text-5xl cursor-pointer sm:hidden"
         />
         <Link
-          className=" text-xl sm:text-2xl lg:text-3xl font-semibold  pl-4"
+          className=" text-xl sm:text-2xl lg:text-3xl font-eduTas font-medium  pl-4"
           to={"/"}
         >
           Brand Shop
