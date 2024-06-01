@@ -1,10 +1,12 @@
+import StarRatings from "react-star-ratings";
 import { IoMdStar } from "react-icons/io";
 import { IoMdStarOutline } from "react-icons/io";
-import Rating from "react-rating";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const BrandProductsCard = ({ product }) => {
-  console.log(product);
-  const { name, image, brand, price, rating, type } = product;
+  const { _id, name, image, brand, price, rating, type } = product;
+  // console.log(product)
   return (
     <div className="border rounded-lg shadow-lg">
       <div className="max-w-56 h-auto mx-auto py-4">
@@ -22,19 +24,21 @@ const BrandProductsCard = ({ product }) => {
           <span className="font-semibold">Price</span>: {price}&#2547;
         </p>
         <div className="flex items-center mb-2 text-2xl">
-          <Rating
-            readonly
-            className="text-yellow-500"
-            initialRating={rating}
-            emptySymbol={<IoMdStarOutline />}
-            fullSymbol={<IoMdStar />}
+          <StarRatings
+            rating={parseFloat(rating)}
+            starRatedColor="#ffc22d"
+            starDimension="24px"
+            starSpacing="2px"
+            numberOfStars={5}
+            emptyStar={<IoMdStarOutline />}
+            starRatedIcon={<IoMdStar />}
           />
           <span className="text-gray-700 ml-2 text-lg">{rating}</span>
         </div>
         <div className="flex justify-between">
-          <button className="bg-blue-500 text-white px-3 py-2 font-semibold hover:scale-95 transition-all rounded hover:bg-blue-600">
+          <Link to={`/productDetails/${_id}`}  className="bg-blue-500 text-white px-3 py-2 font-semibold hover:scale-95 transition-all rounded hover:bg-blue-600">
             Details
-          </button>
+          </Link>
           <button className="bg-green-500 text-white px-3 py-1 rounded font-semibold hover:scale-95 transition-all hover:bg-green-600">
             Update
           </button>
@@ -44,4 +48,7 @@ const BrandProductsCard = ({ product }) => {
   );
 };
 
+BrandProductsCard.propTypes = {
+  product: PropTypes.object,
+};
 export default BrandProductsCard;

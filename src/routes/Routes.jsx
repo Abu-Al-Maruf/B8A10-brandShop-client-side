@@ -5,6 +5,7 @@ import AddProduct from "../pages/AddProduct/AddProduct";
 import MyCart from "../pages/MyCart/MyCart";
 import Login from "../pages/Login/Login";
 import BrandProducts from "../pages/BrandProducts/BrandProducts";
+import ProductDetails from "../pages/BrandProducts/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -14,12 +15,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch('/brandData.json')
+        loader: () => fetch('http://localhost:5000/brands')
       },
       {
         path: "/brandProducts/:brand",
         element: <BrandProducts></BrandProducts>,
         loader: () => fetch('http://localhost:5000/brandProducts')
+      },
+      {
+        path: "/productDetails/:id",
+        element: <ProductDetails></ProductDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/brandProducts/${params.id}`)
       },
       {
         path: "/addProduct",

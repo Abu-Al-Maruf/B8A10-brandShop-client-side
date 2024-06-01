@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const Brands = ({ brands }) => {
+
   return (
     <section className="bg-gray-100 py-8">
       <div className="container mx-auto text-center w-full  lg:w-2/3 px-4 md:px-8">
@@ -13,7 +14,7 @@ const Brands = ({ brands }) => {
           {brands.map((brand) => (
             <Link
               to={`/brandProducts/${brand.name}`}
-              key={brand.id}
+              key={brand._id}
               className="p-4 sm:p-6 md:p-10 bg-white rounded-lg shadow-md transform hover:scale-105 transition duration-300 ease-in-out cursor-pointer"
             >
               <img src={brand.image} className="h-16 mx-auto mb-2" />
