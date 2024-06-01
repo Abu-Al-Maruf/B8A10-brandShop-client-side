@@ -17,12 +17,12 @@ const BrandProducts = () => {
   }, [brand, loadedBrands]);
 
   return (
-    <div className="p-5">
+    <div className="p-5 sm:p-10 lg:p-16">
       <h1 className="text-3xl text-center p-5">{brand}</h1>
 
       <BrandSlider brand={brand}></BrandSlider>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 py-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 py-6">
         {brands.map((product) => (
           <BrandProductsCard key={product._id} product={product} />
         ))}
