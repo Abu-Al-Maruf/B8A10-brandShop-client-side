@@ -7,29 +7,24 @@ const ProductDetails = () => {
   const { name, image, desc, brand, price } = loadedProduct;
 
   const handleAddToCart = () => {
-    console.log(`Added ${name} to cart`);
-
-    fetch('http://localhost:5000/brandProducts/addCart', {
-        method: 'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(loadedProduct)
+    fetch("http://localhost:5000/addCart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loadedProduct),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.insertedId){
-        Swal.fire({
-          title: "Good job!",
-          text: "add to cart successfully",
-          icon: "success"
-        }) 
-      }
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Good job!",
+            text: "add to cart successfully",
+            icon: "success",
+          });
+        }
+      });
   };
 
   return (
