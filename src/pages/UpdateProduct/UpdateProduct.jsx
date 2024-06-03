@@ -1,7 +1,10 @@
-import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
 
-const AddProduct = () => {
-  const handleAddProduct = (e) => {
+const UpdateProduct = () => {
+  const product = useLoaderData();
+  const { name, desc, image, brand, price, rating, type } = product;
+
+  const handleUpdateProduct = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -14,33 +17,16 @@ const AddProduct = () => {
     const user = { name, brand, type, price, desc, rating, image };
     console.log(user);
     form.reset();
-
-    fetch("http://localhost:5000/brandProducts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
-          Swal.fire({
-            title: "Success",
-            text: "Product added successfully",
-            icon: "success",
-          });
-        }
-      });
   };
 
   return (
     <section className="py-12 px-40 bg-gray-200 ">
-      <h1 className="text-center text-3xl pb-10 font-semibold">Add Product</h1>
+      <h1 className="text-center text-xl pb-10 font-semibold">
+        Update Product of: <span className="text-red-500 pl-3">{name}</span>
+      </h1>
 
       <form
-        onSubmit={handleAddProduct}
+        onSubmit={handleUpdateProduct}
         className="grid grid-cols-1 md:grid-cols-2 justify-center items-center gap-9"
       >
         <div className="flex flex-col justify-center items-start gap-1">
@@ -48,10 +34,11 @@ const AddProduct = () => {
             Name
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="name"
             placeholder="Enter name"
+            defaultValue={name}
             required
           />
         </div>
@@ -61,10 +48,11 @@ const AddProduct = () => {
             Brand Name
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="brand"
             placeholder="Enter brand name"
+            defaultValue={brand}
             required
           />
         </div>
@@ -74,10 +62,11 @@ const AddProduct = () => {
             Type
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="type"
             placeholder="Enter type"
+            defaultValue={type}
             required
           />
         </div>
@@ -86,10 +75,11 @@ const AddProduct = () => {
             Price
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="price"
             placeholder="Enter price"
+            defaultValue={price}
             required
           />
         </div>
@@ -98,10 +88,11 @@ const AddProduct = () => {
             Short description
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="desc"
             placeholder="Enter short description"
+            defaultValue={desc}
             required
           />
         </div>
@@ -110,10 +101,11 @@ const AddProduct = () => {
             Rating
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="rating"
             placeholder="Enter rating"
+            defaultValue={rating}
             required
           />
         </div>
@@ -122,19 +114,20 @@ const AddProduct = () => {
             Image
           </label>
           <input
-            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-gray-700  focus:outline-none focus:bg-white focus:border-purple-500"
+            className="bg-gray-50 w-full border-2 border-gray-200 rounded-lg  py-2 px-4 text-green-500 font-medium  focus:outline-none focus:bg-white focus:border-purple-500"
             type="text"
             id="image"
             placeholder="Enter image link"
+            defaultValue={image}
             required
           />
         </div>
         <div className="col-span-2 mx-auto">
-          <button className="btn btn-primary w-32">Add</button>
+          <button className="btn btn-primary w-32">Update</button>
         </div>
       </form>
     </section>
   );
 };
 
-export default AddProduct;
+export default UpdateProduct;

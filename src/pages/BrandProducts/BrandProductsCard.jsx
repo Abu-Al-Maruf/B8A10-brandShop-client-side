@@ -42,9 +42,9 @@ const BrandProductsCard = ({ product }) => {
           >
             Details
           </Link>
-          <button className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-green-600 hover:shadow-md hover:shadow-green-400 transition-all duration-300 ease-in-out">
+          <Link to={`/updateProduct/${_id}`} className="bg-green-500 text-white px-3 py-2 rounded-lg font-semibold hover:bg-green-600 hover:shadow-md hover:shadow-green-400 transition-all duration-300 ease-in-out">
             Update
-          </button>
+          </Link>
         </div>
       </div>
     </div>
