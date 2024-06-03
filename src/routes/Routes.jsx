@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import BrandProducts from "../pages/BrandProducts/BrandProducts";
 import ProductDetails from "../pages/BrandProducts/ProductDetails";
 import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
+import Register from "../pages/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
       },
     ],
   },

@@ -1,6 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 
-const Login = () => {
+const Register = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,8 +13,24 @@ const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
       <div className="bg-white/50 py-6 px-10 rounded shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-8">Please Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-8">Please Register</h2>
         <form onSubmit={handleLogin} className="space-y-6">
+          <div>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your full name"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              required
+            />
+          </div>
           <div>
             <label
               htmlFor="email"
@@ -51,7 +67,7 @@ const Login = () => {
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            Login
+            Register
           </button>
         </form>
         <div className="mt-4 flex items-center justify-between">
@@ -67,9 +83,9 @@ const Login = () => {
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
-            <a href="/register" className="text-blue-600 hover:underline">
-              Register
+            Already have an account?{" "}
+            <a href="/login" className="text-blue-600 hover:underline">
+              Login
             </a>
           </p>
         </div>
@@ -78,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
