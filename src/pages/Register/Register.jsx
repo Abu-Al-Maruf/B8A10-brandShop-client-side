@@ -1,13 +1,25 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+    const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
+    console.log(name,email, password);
 
-    console.log(email, password);
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

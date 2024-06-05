@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
   const handleLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -8,6 +12,13 @@ const Login = () => {
     const password = formData.get("password");
 
     console.log(email, password);
+    loginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
