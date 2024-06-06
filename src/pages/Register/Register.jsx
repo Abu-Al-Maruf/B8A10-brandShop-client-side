@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const [registerError, setRegisterError] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -11,11 +13,35 @@ const Register = () => {
     const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(name,email, password);
+    console.log(name, email, password);
+    setRegisterError('')
+
+    if (password.length < 6) {
+      setRegisterError("Password must be at least 6 characters");
+      return
+    }
+    if (!/[A-Z]/.test(password)) {
+      setRegisterError('Password must contain at least one capital letter.');
+      return
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setRegisterError('Password must contain at least one special character.');
+      return
+    }
+   
+
 
     createUser(email, password)
       .then((res) => {
         console.log(res.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Register Success",
+          showConfirmButton: false,
+          timer: 1000
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -75,9 +101,13 @@ const Register = () => {
               required
             />
           </div>
+          <span className="text-red-500 mt-4">
+            {registerError && registerError}
+          </span>
+
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-4"
           >
             Register
           </button>

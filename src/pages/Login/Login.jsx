@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -15,9 +16,16 @@ const Login = () => {
     loginUser(email, password)
       .then((res) => {
         console.log(res.user);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login Success",
+          showConfirmButton: false,
+          timer: 1000
+        });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.code)
       });
   };
 
