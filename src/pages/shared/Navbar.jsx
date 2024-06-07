@@ -1,10 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+
+  const { user, logOut } = useContext(AuthContext);
+
+  console.log(user);
+
   const navLinks = (
     <>
       <li>
@@ -80,11 +87,32 @@ const Navbar = () => {
         <ul className="sm:flex gap-5 text-lg  font-medium hidden">
           {navLinks}
         </ul>
-        <div>
+        <div onClick={() => setShowProfile(!showProfile)} className="relative">
           <img
             className="w-12 cursor-pointer rounded-full"
-            src="https://www.shareicon.net/data/512x512/2016/09/15/829459_man_512x512.png"
+            src={`${
+              user?.photoURL
+                ? user?.photoURL
+                : "https://www.shareicon.net/data/512x512/2016/09/15/829459_man_512x512.png"
+            } `}
           />
+
+          <div
+            className={`flex flex-col w-36 gap-1 font-medium bg-slate-600 text-white shadow-xl rounded  justify-center items-center absolute right-0 top-12 py-3 px-4  transition-all z-50  ${
+              showProfile ? "flex" : "hidden"
+            }`}
+          >
+            <span className="hover:bg-orange-500 px-2 ">
+              {(user && user?.displayName) || "Maruf"}
+            </span>
+            <div className="hover:bg-orange-500 px-2 ">
+              {user ? (
+                <Link to={'/'} onClick={() => logOut()}>Log Out</Link>
+              ) : (
+                <Link to={"/login"}>Login</Link>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </nav>
