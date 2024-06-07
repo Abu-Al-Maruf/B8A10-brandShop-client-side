@@ -3,7 +3,7 @@ import Brands from "./Brands";
 import Banner from "./Banner";
 import Footer from "../shared/Footer";
 import AllProducts from "./AllProducts";
-import Features from "./Features";
+import Offers from "./Offers";
 
 const Home = () => {
   const brands = useLoaderData();
@@ -12,7 +12,7 @@ const Home = () => {
       <Banner></Banner>
       <Brands brands={brands}></Brands>
       <AllProducts></AllProducts>
-      <Features></Features>
+      <Offers></Offers>
       <Footer></Footer>
     </div>
   );

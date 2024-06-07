@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 const Brands = ({ brands }) => {
-
+console.log(brands)
   return (
     <section className="bg-gray-100 py-8">
       <div className="container mx-auto text-center w-full  lg:w-2/3 px-4 md:px-8">

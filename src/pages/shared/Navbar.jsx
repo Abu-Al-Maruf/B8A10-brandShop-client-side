@@ -45,14 +45,26 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-blue-700" : ""
-          }
-        >
-          Login
-        </NavLink>
+        {user ? (
+          <NavLink
+          onClick={() => logOut()}
+            to="/login"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "text-blue-700" : ""
+            }
+          >
+            LogOut
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/login"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "text-blue-700" : ""
+            }
+          >
+            Login
+          </NavLink>
+        )}
       </li>
     </>
   );
@@ -103,11 +115,13 @@ const Navbar = () => {
             }`}
           >
             <span className="hover:bg-orange-500 px-2 ">
-              {(user && user?.displayName) || "Maruf"}
+              {(user && user?.displayName) }
             </span>
             <div className="hover:bg-orange-500 px-2 ">
               {user ? (
-                <Link to={'/'} onClick={() => logOut()}>Log Out</Link>
+                <Link to={"/"} onClick={() => logOut()}>
+                  Log Out
+                </Link>
               ) : (
                 <Link to={"/login"}>Login</Link>
               )}

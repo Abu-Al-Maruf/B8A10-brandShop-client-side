@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
-  const [registerError, setRegisterError] = useState('');
+  const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,23 +16,21 @@ const Register = () => {
     const email = formData.get("email");
     const password = formData.get("password");
     console.log(name, email, password);
-    setRegisterError('')
+    setRegisterError("");
 
     if (password.length < 6) {
       setRegisterError("Password must be at least 6 characters");
-      return
+      return;
     }
     if (!/[A-Z]/.test(password)) {
-      setRegisterError('Password must contain at least one capital letter.');
-      return
+      setRegisterError("Password must contain at least one capital letter.");
+      return;
     }
 
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      setRegisterError('Password must contain at least one special character.');
-      return
+      setRegisterError("Password must contain at least one special character.");
+      return;
     }
-   
-
 
     createUser(email, password)
       .then((res) => {
@@ -40,8 +40,9 @@ const Register = () => {
           icon: "success",
           title: "Register Success",
           showConfirmButton: false,
-          timer: 1000
+          timer: 1000,
         });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);

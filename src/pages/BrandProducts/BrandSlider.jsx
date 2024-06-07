@@ -38,7 +38,7 @@ const BrandSlider = ({ brand }) => {
           />
           <div className="absolute top-0 left-0 w-full p-1">
             <h2 className="text-white text-2xl font-bold bg-gradient-to-r from-black to-transparent p-2 rounded">
-              discount
+              New Arrival
             </h2>
           </div>
         </div>

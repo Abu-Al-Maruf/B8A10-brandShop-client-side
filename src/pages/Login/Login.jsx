@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser,googleLogin } = useContext(AuthContext);
+  const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate()
   console.log(location)
@@ -30,7 +31,8 @@ const Login = () => {
         navigate(location?.state ? location?.state : '/')
       })
       .catch((error) => {
-        console.log(error.code)
+        console.log(error.message)
+        setError(error.message)
       });
   };
 
@@ -50,6 +52,7 @@ const Login = () => {
     })
     .catch((error) => {
       console.log(error)
+      setError(error.message)
     })
   }
 
@@ -89,6 +92,9 @@ const Login = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               required
             />
+            {error && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
           </div>
           <button
             type="submit"
