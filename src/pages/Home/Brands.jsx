@@ -10,7 +10,7 @@ console.log(brands)
         </h1>
         <p className="text-lg  mb-8">Buy our best products</p>
 
-        <div className="grid grid-cols-2  sm:grid-cols-3  gap-y-6 gap-x-10 mb-8">
+        <div className="grid grid-cols-2  sm:grid-cols-3   gap-y-6 sm:gap-x-10 gap-x-3 mb-8">
           {brands.map((brand) => (
             <Link
               to={`/brandProducts/${brand.name}`}

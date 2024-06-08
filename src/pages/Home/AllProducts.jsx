@@ -18,7 +18,7 @@ const AllProducts = () => {
   return (
     <div className="p-10 sm:px-20  bg-blue-100">
       <h1 className="text-2xl font-bold text-center mb-6">All Products</h1>
-      <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {productsToShow.map((product) => (
           <Link
           to={`/productDetails/${product._id}`}
