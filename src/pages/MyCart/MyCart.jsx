@@ -28,7 +28,7 @@ const MyCart = () => {
                 text: "Your product has been deleted.",
                 icon: "success",
               });
-              const remaining = loadedCartProducts.filter(
+              const remaining = products.filter(
                 (prod) => prod._id !== _id
               );
               setProducts(remaining);

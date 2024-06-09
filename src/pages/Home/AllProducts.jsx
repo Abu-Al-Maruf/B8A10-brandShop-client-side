@@ -10,7 +10,7 @@ const AllProducts = () => {
   const productsToShow = showAll ? allProducts : allProducts.slice(0, 8);
 
   useEffect(() => {
-    fetch("https://a10-brand-shop-server-side-brown.vercel.app/brandProducts")
+    fetch("https://a10-brand-shop-server-side-chi.vercel.app/brandProducts")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   }, []);
