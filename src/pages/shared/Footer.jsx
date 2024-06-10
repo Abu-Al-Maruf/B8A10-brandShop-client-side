@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Footer = () => {
+  const {darkMode } = useContext(AuthContext);
+
   return (
-    <footer className="footer items-start p-10 sm:p-20 bg-gray-200 text-base-content">
+    <footer className={`${darkMode ? 'bg-gray-800 text-gray-200' :'bg-gray-200'} footer items-start p-10 sm:p-20 bg-gray-200 text-base-content`}>
       <aside>
         <Link
           className=" text-xl mt-12 sm:text-2xl lg:text-3xl font-semibold text-gray-600 pl-4"

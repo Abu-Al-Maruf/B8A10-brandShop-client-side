@@ -17,9 +17,12 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/addCart/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://a10-brand-shop-server-side-chi.vercel.app/addCart/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

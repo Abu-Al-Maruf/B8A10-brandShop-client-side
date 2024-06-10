@@ -37,7 +37,9 @@ const AddProduct = () => {
 
   return (
     <section className="py-8 px-4 sm:px-6 lg:px-20 bg-gray-200">
-      <h1 className="text-center text-2xl md:text-3xl pb-6 font-semibold">Add Product</h1>
+      <h1 className="text-center text-2xl md:text-3xl pb-6 font-semibold">
+        Add Product
+      </h1>
 
       <form
         onSubmit={handleAddProduct}

@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 const Features = () => {
+  const { darkMode } = useContext(AuthContext);
+
   return (
     <section className="bg-gradient-to-r from-green-300 to-green-600 p-10 sm:p-20">
       <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between">
@@ -15,7 +20,9 @@ const Features = () => {
         <form className="lg:w-1/2 p-6 flex flex-col lg:flex-row items-center">
           <input
             type="email"
-            className="w-full lg:w-2/3 border bg-gray-100 rounded-md py-2 px-4 mb-2 lg:mb-0 lg:mr-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+            className={`${
+              darkMode ? "bg-gray-600" : "bg-gray-100"
+            } w-full lg:w-2/3 border rounded-md py-2 px-4 mb-2 lg:mb-0 lg:mr-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500`}
             placeholder="Enter your email"
           />
           <button
