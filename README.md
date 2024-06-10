@@ -1,5 +1,5 @@
 # Brand Shop
-#Live Website Link: https://a10-brandshop.firebaseapp.com/
+#Live Website Link: https://a10-brandshop.web.app
 
 ## Features
 
