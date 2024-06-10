@@ -28,9 +28,7 @@ const MyCart = () => {
                 text: "Your product has been deleted.",
                 icon: "success",
               });
-              const remaining = products.filter(
-                (prod) => prod._id !== _id
-              );
+              const remaining = products.filter((prod) => prod._id !== _id);
               setProducts(remaining);
             }
           });
@@ -39,18 +37,17 @@ const MyCart = () => {
   };
 
   return (
-    <div className="mx-auto p-6 flex flex-col items-center min-h-screen  bg-slate-200">
+    <div className="mx-auto p-6 flex flex-col items-center min-h-screen bg-slate-200">
       <h2 className="text-3xl font-semibold mb-2">My Cart</h2>
-      <h2 className="text-xl  mb-4">Total : {products.length}</h2>
+      <h2 className="text-xl mb-4">Total: {products.length}</h2>
       {products.length > 0 ? (
-        <div className="flex flex-col w-full sm:w-3/4  justify-center items-center">
+        <div className="flex flex-col w-full sm:w-3/4 lg:w-2/3 justify-center items-center">
           {products.map((product) => (
             <div
               key={product._id}
-              className="bg-white shadow-md rounded-lg p-4 flex items-center justify-between mb-4"
-              style={{ width: "60%", backgroundColor: "#f3f4f6" }}
+              className="bg-white shadow-md rounded-lg p-4 flex flex-col md:flex-row items-center justify-between mb-4 w-full"
             >
-              <div className="flex items-center">
+              <div className="flex items-center w-full md:w-auto mb-4 md:mb-0">
                 <img
                   src={product.image}
                   alt={product.name}

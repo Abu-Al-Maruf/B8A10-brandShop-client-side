@@ -10,7 +10,6 @@ const Navbar = () => {
 
   const { user, logOut } = useContext(AuthContext);
 
-  console.log(user);
 
   const navLinks = (
     <>
@@ -48,9 +47,9 @@ const Navbar = () => {
         {user ? (
           <NavLink
           onClick={() => logOut()}
-            to="/login"
+            to="/"
             className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "text-blue-700" : ""
+              isPending ? "pending" : isActive ? "" : ""
             }
           >
             LogOut
