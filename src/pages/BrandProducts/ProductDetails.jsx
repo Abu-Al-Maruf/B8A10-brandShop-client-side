@@ -1,18 +1,25 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const ProductDetails = () => {
   const loadedProduct = useLoaderData();
+  const { user } = useContext(AuthContext);
 
-  const { name, image, desc, brand, price } = loadedProduct;
+  const { name, image, desc, brand, price, type } = loadedProduct;
 
   const handleAddToCart = () => {
-    fetch("https://a10-brand-shop-server-side-chi.vercel.app/addCart", {
+    const email = user?.email;
+
+    const addCartProduct = { name, email, image, brand, price, type };
+
+    fetch("http://localhost:5000/addCart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(loadedProduct),
+      body: JSON.stringify(addCartProduct),
     })
       .then((res) => res.json())
       .then((data) => {

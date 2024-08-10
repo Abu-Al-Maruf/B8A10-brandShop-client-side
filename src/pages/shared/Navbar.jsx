@@ -125,9 +125,12 @@ const Navbar = () => {
               </span>
               <div className="hover:bg-orange-500 px-2">
                 {user ? (
-                  <Link to={"/"} onClick={() => logOut()}>
-                    Log Out
-                  </Link>
+                  <>
+                    <p>{user?.email}</p>
+                    <Link to={"/"} onClick={() => logOut()}>
+                      Log Out
+                    </Link>
+                  </>
                 ) : (
                   <Link to={"/login"}>Login</Link>
                 )}

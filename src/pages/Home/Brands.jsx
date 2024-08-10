@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 const Brands = ({ brands }) => {
   const { darkMode } = useContext(AuthContext);
+  console.log(brands);
 
   return (
     <section className={`${darkMode && "dark"}`}>

@@ -17,7 +17,7 @@ const UpdateProduct = () => {
     const image = form.image.value;
     const user = { name, brand, type, price, desc, rating, image };
 
-    fetch(`https://a10-brand-shop-server-side-chi.vercel.app/brandProducts/${_id}`, {
+    fetch(`http://localhost:5000/brandProducts/${_id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

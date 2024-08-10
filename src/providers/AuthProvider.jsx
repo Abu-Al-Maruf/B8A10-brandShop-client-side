@@ -10,6 +10,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -18,7 +19,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
-
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -41,9 +41,32 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
       setIsLoading(false);
+      console.log("From Auth state", currentUser);
+
+      const userEmail = currentUser?.email;
+      if (currentUser) {
+        axios
+          .post(
+            "http://localhost:5000/jwt",
+            { email: userEmail },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        axios
+          .post("http://localhost:5000/logout", { email: userEmail }, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
   }, []);
 
@@ -59,7 +82,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     isLoading,
     darkMode,
-    toggleDarkMode
+    toggleDarkMode,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

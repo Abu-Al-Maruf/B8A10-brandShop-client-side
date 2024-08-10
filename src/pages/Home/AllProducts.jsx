@@ -9,9 +9,10 @@ const AllProducts = () => {
   const [showAll, setShowAll] = useState(false);
   const productsToShow = showAll ? allProducts : allProducts.slice(0, 8);
   const { darkMode } = useContext(AuthContext);
+  console.log('alllll', productsToShow);
 
   useEffect(() => {
-    fetch("https://a10-brand-shop-server-side-chi.vercel.app/brandProducts")
+    fetch("http://localhost:5000/brandProducts", {credentials: 'include'})
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   }, []);
@@ -21,7 +22,7 @@ const AllProducts = () => {
       <div className="p-10 sm:px-20 bg-blue-100 dark:bg-gray-800">
         <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">All Products</h1>
         <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productsToShow.map((product) => (
+          {productsToShow?.map((product) => (
             <Link
               to={`/productDetails/${product._id}`}
               key={product._id}
@@ -38,7 +39,7 @@ const AllProducts = () => {
                 <p className="text-gray-600 dark:text-gray-300">Type: {product.type}</p>
                 <div className="flex items-center mb-2 text-xl sm:text-2xl">
                   <StarRatings
-                    rating={parseFloat(product.rating)}
+                    rating={parseFloat(product?.rating) || 0}
                     starRatedColor="#ffc22d"
                     starDimension="20px"
                     starSpacing="2px"

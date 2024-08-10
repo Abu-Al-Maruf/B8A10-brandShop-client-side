@@ -1,10 +1,21 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const MyCart = () => {
-  const loadedCartProducts = useLoaderData();
-  const [products, setProducts] = useState(loadedCartProducts);
+  const [products, setProducts] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/addCart?email=${user?.email}`)
+      .then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      });
+  }, [user?.email]);
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -17,12 +28,9 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(
-          `https://a10-brand-shop-server-side-chi.vercel.app/addCart/${_id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`http://localhost:5000/addCart/${_id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -45,7 +53,7 @@ const MyCart = () => {
       <h2 className="text-xl mb-4">Total: {products.length}</h2>
       {products.length > 0 ? (
         <div className="flex flex-col w-full sm:w-3/4 lg:w-2/3 justify-center items-center">
-          {products.map((product) => (
+          {products?.map((product) => (
             <div
               key={product._id}
               className="bg-white shadow-md rounded-lg p-4 flex flex-col md:flex-row items-center justify-between mb-4 w-full"

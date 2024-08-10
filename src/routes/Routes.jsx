@@ -20,16 +20,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch("https://a10-brand-shop-server-side-chi.vercel.app/brands"),
+        loader: () => fetch("http://localhost:5000/brands"),
       },
       {
         path: "/brandProducts/:brand",
         element: <BrandProducts></BrandProducts>,
-        loader: () =>
-          fetch(
-            "https://a10-brand-shop-server-side-chi.vercel.app/brandProducts"
-          ),
+        loader: () => fetch("http://localhost:5000/brandProducts"),
       },
       {
         path: "/productDetails/:id",
@@ -39,9 +35,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://a10-brand-shop-server-side-chi.vercel.app/brandProducts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/brandProducts/${params.id}`),
       },
       {
         path: "/addProduct",
@@ -59,9 +53,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://a10-brand-shop-server-side-chi.vercel.app/brandProducts/${params.id}`
-          ),
+          fetch(`http://localhost:5000/brandProducts/${params.id}`),
       },
       {
         path: "/myCart",
@@ -70,8 +62,6 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () =>
-          fetch("https://a10-brand-shop-server-side-chi.vercel.app/addCart"),
       },
       {
         path: "/login",

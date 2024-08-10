@@ -8,7 +8,7 @@ const BrandSlider = ({ brand }) => {
   const [specificBrand, setSpecificBrand] = useState(null);
 
   useEffect(() => {
-    fetch("https://a10-brand-shop-server-side-chi.vercel.app/brands")
+    fetch("http://localhost:5000/brands")
       .then((res) => res.json())
       .then((data) => {
         const foundBrand = data.find(
