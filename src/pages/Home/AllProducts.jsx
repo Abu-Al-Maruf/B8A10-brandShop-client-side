@@ -3,26 +3,48 @@ import StarRatings from "react-star-ratings";
 import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useAxios from "../../hooks/useAxios";
 
 const AllProducts = () => {
-  const [allProducts, setAllProducts] = useState([]);
-  const [showAll, setShowAll] = useState(false);
-  const productsToShow = showAll ? allProducts : allProducts.slice(0, 8);
+  const [products, setProducts] = useState([]);
   const { darkMode } = useContext(AuthContext);
-  console.log('alllll', productsToShow);
+  const [currentPage, setCurrentPage] = useState(1);
+  const axios = useAxios();
+  const itemsPerPage = 6;
+  const totalCount = products?.count || 0;
+
+  // for pagination
+  const totalPage = Math.ceil(totalCount / itemsPerPage);
+
+  const pages = [...Array(totalPage).keys()].map((n) => n + 1);
 
   useEffect(() => {
-    fetch("http://localhost:5000/brandProducts", {credentials: 'include'})
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
-  }, []);
+    axios
+      .get(`/brandProducts?page=${currentPage}&limit=${itemsPerPage}`)
+      .then((res) => {
+        setProducts(res.data);
+      });
+  }, [axios, currentPage, itemsPerPage]);
+
+  const handlePrePage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNextPage = () => {
+    if (currentPage < pages.length) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <section className={`${darkMode && "dark"}`}>
       <div className="p-10 sm:px-20 bg-blue-100 dark:bg-gray-800">
-        <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">All Products</h1>
+        <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">
+          All Products
+        </h1>
         <div className="grid grid-cols-1 mt-10 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productsToShow?.map((product) => (
+          {products?.result?.map((product) => (
             <Link
               to={`/productDetails/${product._id}`}
               key={product._id}
@@ -34,9 +56,15 @@ const AllProducts = () => {
                 className="w-full max-w-44 mx-auto py-2"
               />
               <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2 dark:text-white">{product.name}</h3>
-                <p className="text-gray-600 dark:text-gray-300">Brand: {product.brand}</p>
-                <p className="text-gray-600 dark:text-gray-300">Type: {product.type}</p>
+                <h3 className="text-xl font-semibold mb-2 dark:text-white">
+                  {product.name}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Brand: {product.brand}
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Type: {product.type}
+                </p>
                 <div className="flex items-center mb-2 text-xl sm:text-2xl">
                   <StarRatings
                     rating={parseFloat(product?.rating) || 0}
@@ -58,22 +86,29 @@ const AllProducts = () => {
             </Link>
           ))}
         </div>
-        <div className="flex justify-center mt-6">
-          {showAll ? (
-            <button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => setShowAll(false)}
-            >
-              See Less
+
+        <div className="py-10 flex justify-center">
+          <div className="flex justify-center gap-2">
+            <button onClick={handlePrePage} className="join-item btn btn-sm">
+              Pre
             </button>
-          ) : (
-            <button
-              className="bg-blue-500 text-white px-4 py-2 mx-auto rounded"
-              onClick={() => setShowAll(true)}
-            >
-              Show All
+            {pages.map((page) => (
+              <button
+                key={page}
+                className={
+                  currentPage === page
+                    ? "bg-green-500 join-item btn btn-sm"
+                    : "join-item btn btn-sm"
+                }
+                onClick={() => setCurrentPage(page)}
+              >
+                {page}
+              </button>
+            ))}
+            <button onClick={handleNextPage} className="join-item btn btn-sm">
+              Next
             </button>
-          )}
+          </div>
         </div>
       </div>
     </section>

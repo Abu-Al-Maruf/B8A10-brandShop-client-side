@@ -1,11 +1,9 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const Brands = ({ brands }) => {
-  const { darkMode } = useContext(AuthContext);
-  console.log(brands);
+  const { darkMode } = useAuth();
 
   return (
     <section className={`${darkMode && "dark"}`}>

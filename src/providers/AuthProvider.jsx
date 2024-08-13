@@ -44,7 +44,6 @@ const AuthProvider = ({ children }) => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
-      console.log("From Auth state", currentUser);
 
       const userEmail = currentUser?.email;
       if (currentUser) {

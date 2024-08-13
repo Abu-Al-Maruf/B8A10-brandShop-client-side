@@ -6,8 +6,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 const ProductDetails = () => {
   const loadedProduct = useLoaderData();
   const { user } = useContext(AuthContext);
-
   const { name, image, desc, brand, price, type } = loadedProduct;
+
+  
 
   const handleAddToCart = () => {
     const email = user?.email;

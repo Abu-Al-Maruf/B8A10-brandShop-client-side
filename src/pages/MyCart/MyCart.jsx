@@ -1,21 +1,18 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../providers/AuthProvider";
+import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 const MyCart = () => {
   const [products, setProducts] = useState([]);
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth()
+  const axios = useAxios();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/addCart?email=${user?.email}`)
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      });
-  }, [user?.email]);
+    axios.get(`/addCart?email=${user?.email}`).then((res) => {
+      setProducts(res.data);
+    });
+  }, [user?.email, axios]);
 
   const handleDelete = (_id) => {
     Swal.fire({

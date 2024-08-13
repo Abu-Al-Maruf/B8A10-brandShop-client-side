@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 import Slider from "react-slick/lib/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useAxios from "../../hooks/useAxios";
 
 const BrandSlider = ({ brand }) => {
   const [specificBrand, setSpecificBrand] = useState(null);
+  const axios = useAxios();
 
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
-      .then((res) => res.json())
-      .then((data) => {
-        const foundBrand = data.find(
-          (brnd) => brnd.name.toLowerCase() === brand.toLowerCase()
-        );
-        setSpecificBrand(foundBrand);
-      });
-  }, [brand]);
+    axios.get("/brands").then((res) => {
+      const foundBrand = res.data.find(
+        (brnd) => brnd.name.toLowerCase() === brand.toLowerCase()
+      );
+      setSpecificBrand(foundBrand);
+    });
+  }, [brand, axios]);
 
   const settings = {
     dots: true,

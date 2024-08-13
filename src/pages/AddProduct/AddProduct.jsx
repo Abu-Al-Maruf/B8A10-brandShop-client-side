@@ -1,6 +1,10 @@
 import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
 
 const AddProduct = () => {
+  const axios = useAxios()
+
+
   const handleAddProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,24 +19,20 @@ const AddProduct = () => {
     console.log(user);
     form.reset();
 
-    fetch("http://localhost:5000/brandProducts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.insertedId) {
+      axios.post('/brandProducts', user)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
           Swal.fire({
             title: "Success",
             text: "Product added successfully",
             icon: "success",
           });
         }
-      });
+      })
+
+
+
   };
 
   return (
