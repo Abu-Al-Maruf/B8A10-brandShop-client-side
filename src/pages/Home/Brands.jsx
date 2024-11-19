@@ -7,12 +7,12 @@ const Brands = ({ brands }) => {
 
   return (
     <section className={`${darkMode && "dark"}`}>
-      <div className={`bg-gray-100 dark:bg-gray-800 py-8`}>
+      <div className={`bg-blue-100 dark:bg-gray-800 py-20`}>
         <div className="container mx-auto text-center w-full lg:w-2/3 px-4 md:px-8">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 dark:text-white">
             Welcome to Our Brand Shop
           </h1>
-          <p className="text-lg mb-8 dark:text-gray-300">
+          <p className="text-lg font-bold mb-8 text-blue-800">
             Buy our best products
           </p>
 

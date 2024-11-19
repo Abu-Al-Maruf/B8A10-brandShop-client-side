@@ -39,7 +39,7 @@ const AllProducts = () => {
 
   return (
     <section className={`${darkMode && "dark"}`}>
-      <div className="p-10 sm:px-20 bg-blue-100 dark:bg-gray-800">
+      <div className="p-10 sm:px-20 bg-gray-100 dark:bg-gray-800">
         <h1 className="text-2xl font-bold text-center mb-6 dark:text-white">
           All Products
         </h1>
@@ -48,13 +48,15 @@ const AllProducts = () => {
             <Link
               to={`/productDetails/${product._id}`}
               key={product._id}
-              className="bg-white dark:bg-gray-600 shadow-md rounded-md overflow-hidden transform hover:scale-[.98] transition duration-300 ease-in-out cursor-pointer"
+              className="bg-white dark:bg-gray-600 shadow-md rounded-lg overflow-hidden transform hover:scale-[.98] transition duration-300 ease-in-out cursor-pointer"
             >
-              <img
+             <div className="py-5">
+             <img
                 src={product.image}
                 alt={product.name}
                 className="w-full max-w-44 mx-auto py-2"
               />
+             </div>
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2 dark:text-white">
                   {product.name}

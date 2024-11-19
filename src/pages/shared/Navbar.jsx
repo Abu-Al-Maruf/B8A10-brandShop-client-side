@@ -69,7 +69,7 @@ const Navbar = () => {
   return (
     <div className={`${darkMode && "dark"}`}>
       <nav
-        className={` bg-gray-100 dark:bg-gray-800 text-black dark:text-white shadow-lg flex justify-between items-center py-4 px-6`}
+        className={` bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg flex justify-between items-center py-4 px-4 md:px-10`}
       >
         <div className="flex justify-center items-center">
           <IoMenu
@@ -77,7 +77,7 @@ const Navbar = () => {
             className="text-5xl cursor-pointer sm:hidden"
           />
           <Link
-            className="text-xl sm:text-2xl lg:text-3xl font-eduTas font-medium pl-4"
+            className="hidden md:block text-xl sm:text-2xl lg:text-3xl font-eduTas font-medium pl-4"
             to={"/"}
           >
             Brand Shop

@@ -8,7 +8,7 @@ const instance = axios.create({
 });
 
 const useAxios = () => {
-  const { logOut } = useAuth();
+  const logOut = useAuth();
 
   useEffect(() => {
     instance.interceptors.response.use(

@@ -10,7 +10,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import axios from "axios";
+import useAxios from "../hooks/useAxios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
+  const axios = useAxios();
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -48,11 +49,7 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentUser?.email;
       if (currentUser) {
         axios
-          .post(
-            "http://localhost:5000/jwt",
-            { email: userEmail },
-            { withCredentials: true }
-          )
+          .post("/jwt", { email: userEmail })
           .then((res) => {
             console.log(res.data);
           })
@@ -60,14 +57,12 @@ const AuthProvider = ({ children }) => {
             console.log(error);
           });
       } else {
-        axios
-          .post("http://localhost:5000/logout", { email: userEmail }, { withCredentials: true })
-          .then((res) => {
-            console.log(res.data);
-          });
+        axios.post("/logout", { email: userEmail }).then((res) => {
+          console.log(res.data);
+        });
       }
     });
-  }, []);
+  }, [axios]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);

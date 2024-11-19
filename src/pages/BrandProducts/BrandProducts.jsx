@@ -7,9 +7,10 @@ const BrandProducts = () => {
   const { brand } = useParams();
   const loadedBrands = useLoaderData();
   const [brands, setBrands] = useState([]);
+  console.log(loadedBrands);
 
   useEffect(() => {
-    const findBrand = loadedBrands.filter(
+    const findBrand = loadedBrands?.result.filter(
       (brnd) => brnd.brand.toLowerCase() === brand.toLowerCase()
     );
     setBrands(findBrand);
